@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndianStateInfo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <style>
+        .font1
+        {
+            font-family:'Times New Roman', Times, serif;
+            font-size: 25px;
+            text-align: center;
+            border: 1px solid green;
+        }
+        .setBorder
+        {
+            border: 3px solid rgb(9, 151, 151);
+            margin-top: 2%;
+            margin-right: 3px;
+        }
+        #head
+        {
+            text-align: center;
+            font-weight: bold;
+            text-decoration: underline;
+            background-color: rgb(156, 255, 189);
+            font-size: 45 px;
+        }
+        .border2
+        {
+            border: 1.5px solid green;
+        }
+        .picStyle
+        {
+            width: 200px;
+            height: 200px;
+            margin-top: 25px;
+        }
+    </style>
+    <script>
+        let data=[{"sn":"","cap":"","gov":"","cm":"","sImage":"","gImg":"","sMap":"","area":"","ruling":""},
+            {"sn":"Bihar","cap":"Patna","gov":"Arif Mohammad Khan","cm":"Nitish Kumar", "sImage":"chief (4).jpg", "gImg":"governor (17).jpg","sMap":"BiharMap.jpg","area":"19,163","ruling":"Janta Dal(United)"},
+            {"sn":"Andhra Pradesh ","cap":"Hydrabaad","gov":"S. Abdul Nazir","cm":"Chandra Babu Naidu", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/171759048677.jpg?1717590486619", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/The_Governor_of_Andhra_Pradesh%2C_Shri_Justice_%28Retd.%29_S._Abdul_Nazeer_called_on_the_President_of_India.jpg/120px-The_Governor_of_Andhra_Pradesh%2C_Shri_Justice_%28Retd.%29_S._Abdul_Nazeer_called_on_the_President_of_India.jpg","sMap":"chatissgarh.png","area":"94,163","ruling":"Telugu Dasam party"},
+            {"sn":"Arunachal Pradesh","cap":"Itanagar","gov":"Lt. General Kaiwalya Trivikram Parnaik","cm":"Sri Pema Khandu", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884084693.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Kaiwalya_Trivikram_Parnaik.jpg/120px-Kaiwalya_Trivikram_Parnaik.jpg","sMap":"Haryanamap.JPEG","area":"83,741","ruling":"Bhartiya Janta Party"},
+            {"sn":"Assam","cap":"Dispur","gov":"Raj Chandra Kataria","cm":"Himanta vishwasharma", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884091015.png", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Lakshman_Prasad_Acharya.jpg/120px-Lakshman_Prasad_Acharya.jpg","sMap":"mpMap.JPEG","area":"74,438","ruling":"Bhartiya Janta Party"},
+            {"sn":"Chhatisgarh","cap":"Raipur","gov":"Justice (Retd) Biswa Bhusan Harichandan","cm":"VishnuDev sahi", "sImage":"https://cdn.guidely.in/blogs/170247169787.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Ramen_Deka_with_President_Murmu_%28cropped%29.jpg/120px-Ramen_Deka_with_President_Murmu_%28cropped%29.jpg","sMap":"JharkhandMap.jpg","area":"135,192","ruling":"Bhartiya Janta Party"},
+            {"sn":"Goa","cap":"Panji","gov":"Sreedharan pillai","cm":"Shree pramod rawat", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884111226.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/PS_Sreedharan_Pillai.jpg/120px-PS_Sreedharan_Pillai.jpg","sMap":"OdishMap.jpg","area":"37,02","ruling":"Bhartiya Janta Party"},
+            {"sn":"Gujarat","cap":"Gandhinagar","gov":"Acharya Devrat","cm":"Bhupendra Patel", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884115452.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/The_Governor_of_Himachal_Pradesh%2C_Shri_Acharya_Devvrat_calling_on_the_Union_Home_Minister%2C_Shri_Rajnath_Singh%2C_in_New_Delhi_on_July_29%2C_2016_%28cropped%29.jpg/120px-The_Governor_of_Himachal_Pradesh%2C_Shri_Acharya_Devvrat_calling_on_the_Union_Home_Minister%2C_Shri_Rajnath_Singh%2C_in_New_Delhi_on_July_29%2C_2016_%28cropped%29.jpg","sMap":"Rajsthanmap.png","area":"196,024","ruling":"Bhartiya Janta Party"},
+            {"sn":"Hariyana","cap":"Chandigarh","gov":"Bandaru Dattateraya","cm":"Nayab Singh saini", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/171057074816.jpg?1710570748575", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/The_ILO_Deputy_Director_General_%28Policy%29_International_Labour_Organization%2C_Ms._Deborah_Greenfield_meeting_the_Minister_of_State_for_Labour_and_Employment_%28Independent_Charge%29%2C_Shri_Bandaru_Dattatreya%2C_in_New_Delhi_%28cropped%29.jpg/120px-thumbnail.jpg","sMap":"UPMap.png","area":"44,212","ruling":"Bhartiya Janta Party"},
+            {"sn":"Himachal Pradesh","cap":"Ranchi","gov":"Shree pratap shukla","cm":"Shri sukhvindar singh sukhu", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/167153422731.png", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shivpratap_Shukla.jpg/120px-Shivpratap_Shukla.jpg","sMap":"uttrakhandmap.jpeg","area":"55,673","ruling":"Indian National Congress"},
+            {"sn":"Jharkhand","cap":"Ranchi","gov":"C.P Radhakrishnan	","cm":"Hemant soren", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/173330724645.jpg?1733307164695", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Santosh_Kumar_Gangwar_%28cropped%29.jpg/120px-Santosh_Kumar_Gangwar_%28cropped%29.jpg","sMap":"WbMap.jpeg","area":"79,716","ruling":"Jharkhand Mukti Morcha"},
+            {"sn":"Karnataka","cap":"Bangluru","gov":"twar Chandra gahlot","cm":"siddaramaiyah", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/168474022084.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Thawar_Chand_Gehlot.jpg/120px-Thawar_Chand_Gehlot.jpg","sMap":"Haryanamap.JPEG","area":"191,791","ruling":"Indian NAtional Congress"},
+            {"sn":"Kerala","cap":"Thiruvanthapuram","gov":"Shree Rajendra Vishwanath Arlekar","cm":"Shri Pinarai Vijayan", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884147556.jpg", "gImg":"governor (17).jpg","sMap":"Haryanamap.JPEG","area":"38,863","ruling":"Community Party of India"},
+            {"sn":"Madhya Pradesh","cap":"Bhopal","gov":"Mangubhai Chhaganbhai Patel","cm":"Mohan Yadav", "sImage":"https://cdn.guidely.in/blogs/170247187642.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Rajendra_Arlekar.jpg/120px-Rajendra_Arlekar.jpg","sMap":"Haryanamap.JPEG","area":"308,252","ruling":"Bhartiya Janta Party"},
+            {"sn":"Maharashtra","cap":"Mumbai","gov":"Ramesh Bais","cm":"Devendra Fandawish", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/173329946268.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Mangubhai_Patel_MP_Governor_%28cropped%29.jpg/120px-Mangubhai_Patel_MP_Governor_%28cropped%29.jpg","sMap":"WbMap.jpeg","area":"22,327","ruling":"Bhartiya Janta Party"},
+            {"sn":"Manipur","cap":"Imfal","gov":"Anusuiya Uikey","cm":"Nongthombam Biren Singh", "sImage":"chief (26).jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/The_Secretary%2C_Ministry_of_Power%2C_Shri_Ajay_Kumar_Bhalla_in_New_Delhi_on_May_31%2C_2019_%28cropped%29.jpg/120px-The_Secretary%2C_Ministry_of_Power%2C_Shri_Ajay_Kumar_Bhalla_in_New_Delhi_on_May_31%2C_2019_%28cropped%29.jpg","sMap":"JharkhandMap.jpg","area":"307,713","ruling":"Bhartiya Janta Party"},
+            {"sn":"Meghalaya","cap":"Shilong","gov":"Phagu Chauhan","cm":"Shri Conrad Sangma", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884164095.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/C_H_Vijayashankar.jpg/120px-C_H_Vijayashankar.jpg","sMap":"WbMap.jpeg","area":"22,429","ruling":"National People party"},
+            {"sn":"Mizoram","cap":"Aizol","gov":"Dr. Hari Babu Kambhampati","cm":"Lalduhoma", "sImage":"https://cdn.guidely.in/blogs/170247195553.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/VK_Singh.jpg/120px-VK_Singh.jpg","sMap":"JharkhandMap.jpg","area":"21,081","ruling":"Zoram People Moments"},
+            {"sn":"Nagaland","cap":"Kohima","gov":"Shri La. Ganesan","cm":"Shri Neiphiu Rio", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884172370.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/La_Ganesan_Ji_%28cropped%29.jpg/120px-La_Ganesan_Ji_%28cropped%29.jpg","sMap":"WbMap.jpeg","area":"16,579","ruling":"National Democrative Progresive Party"},
+            {"sn":"Odisha","cap":"Bhubaneshwar","gov":"Ganeshi Lal mathur","cm":"Mohan Charan manjhi", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/171843255236.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/K._Hari_Babu.jpg/120px-K._Hari_Babu.jpg","sMap":"JharkhandMap.jpg","area":"155,707","ruling":"Bhartiya Janta Party"},
+            {"sn":"Punjab","cap":"Chandigarh","gov":"Shree Banwari Lal purohit","cm":"Bhagwant mann	", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884184672.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/GC_Kataria.jpg/120px-GC_Kataria.jpg","sMap":"WbMap.jpeg","area":"50,362","ruling":"Aam Janta Party"},
+            {"sn":"Rajsthan","cap":"Jaipur","gov":"Kalraj Mishra","cm":"Bhajan Lal sharma", "sImage":"https://cdn.guidely.in/blogs/170247208333.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Haribhau_Bagade_%28cropped%29.jpg/120px-Haribhau_Bagade_%28cropped%29.jpg","sMap":"JharkhandMap.jpg","area":"342,239","ruling":"Bhartiya Janta Party"},
+            {"sn":"Sikkim","cap":"Gangtok","gov":"Lachman prasad achaya","cm":"Shree PS Goyal", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/167153438882.png", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Om_Prakash_Mathur%2C_18th_Governer_of_Sikkim.jpg/250px-Om_Prakash_Mathur%2C_18th_Governer_of_Sikkim.jpg","sMap":"JharkhandMap.jpg","area":"70,96","ruling":"Sikkim Krantikari Morcha"},
+            {"sn":"Tamil Nadu","cap":"Chennai","gov":"R.N Ravi","cm":"M.K Stavid", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884195816.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/R.N._Ravi.jpg/120px-R.N._Ravi.jpg","sMap":"mpMap.JPEG","area":"130,058","ruling":"Dravida Munnetra Kazhagam"},
+            {"sn":"Telangana","cap":"Hydrabad","gov":"Dr. Tamilisai Soundararajan","cm":"Revanth Reddy", "sImage":"https://cdn.guidely.in/blogs/170247217983.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/The_Chief_Minister_of_Tripura%2C_Shri_Biplab_Kumar_Deb_and_the_Deputy_Chief_Minister%2C_Shri_Jishnu_Debbarma_calling_on_the_Union_Home_Minister%2C_Shri_Rajnath_Singh%2C_in_New_Delhi_on_March_20%2C_2018_%28cropped%29.jpg/120px-thumbnail.jpg","sMap":"JharkhandMap.jpg","area":"112,077","ruling":"Indian National Congress"},
+            {"sn":"Tripura","cap":"Agartala","gov":"Satyadeo Narayan Arya","cm":"Manik Saha", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/168474219018.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Indrasena_Reddy.jpg/120px-Indrasena_Reddy.jpg","sMap":"mpMap.JPEG","area":"10,499","ruling":"Bhartiya Janta Party"},
+            {"sn":"Uttar Pradesh","cap":"Lucknow","gov":"Anandiben Patel","cm":"Yogi Aditya nath", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884207013.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/The_Chief_Minister_of_Gujarat%2C_Smt._Anandiben_Patel_meeting_the_Minister_of_State_for_Commerce_%26_Industry_%28Independent_Charge%29%2C_Finance_and_Corporate_Affairs%2C_Smt._Nirmala_Sitharaman%2C_in_New_Delhi_on_June_10%2C_2014_%28cropped%29.jpg/120px-thumbnail.jpg","sMap":"JharkhandMap.jpg","area":"240,928","ruling":"Bhartiya Janta Party"},
+            {"sn":"Uttrakhand","cap":"Dehradun","gov":"Gurmit Singh","cm":"Pushkar Singh Dhami", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884210561.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/GurmitSingh.jpg/120px-GurmitSingh.jpg","sMap":"mpMap.JPEG","area":"54,483","ruling":"Bhartiya Janta Party"},
+            {"sn":"West Bangal","cap":"Kolkata","gov":"Dr CV Ananda Bose","cm":"Km. Mamata Banerjee", "sImage":"https://guidelyassets.s3.ap-south-1.amazonaws.com/editor/blogs/166884214057.jpg", "gImg":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/C._V._Ananda_Bose_%284x5%29.jpg/120px-C._V._Ananda_Bose_%284x5%29.jpg","sMap":"WbMap.jpeg","area":"88,752","ruling":"All India Trinamool Congress"},
+            {"sn":"","cap":"","gov":"","cm":"","sImage":"","gImg":"","sMap":"","area":"","ruling":""},
+            {"sn":"Andaman and Nicobar Islands","cap":"Port Blair","gov":"Shri. Devendra Kumar Joshi ","cm":"Devendra Kumar Joshi","sImage":"Andman.jpg","gImg":"Andman.jpg","sMap":"JharkhandMap.jpg","area":"8,249","ruling":""},
+            {"sn":"Chandigarh","cap":"Chandigarh","gov":"Gulab Chand Kataria","cm":"Sh. Bhagwant Mann","sImage":"Bhagwant.jpg","gImg":"Gulab.jpg","sMap":"BiharMap.jpg","area":"144","ruling":""},
+            {"sn":"Dadra and Nagar Haveli and Daman and Diu","cap":"Daman","gov":"Praful Patel","cm":"Praful Patel","sImage":"Praful.jpg","gImg":"Praful.jpg","sMap":"WbMap.jpeg","area":"603","ruling":""},
+            {"sn":"Lakshadweep","cap":"Kavaratti","gov":"Shri Praful Patel","cm":"Praful Patel","sImage":"Praful.jpg","gImg":"Praful.jpg","sMap":"WbMap.jpeg","area":"32","ruling":""},
+            {"sn":"Delhi","cap":"New Delhi","gov":" Shri Vinai Kumar Saxena","cm":"Rekha Gupta","sImage":"rekha.jpg","gImg":"Vinayi.jpg","sMap":"BiharMap.jpg","area":"1484","ruling":""},
+            {"sn":"Puducherry (Pondicherry)","cap":"Puducherry","gov":"K. Kailashnathan","cm":"N. Rangaswamy","sImage":"Ranga.jpg","gImg":"Kailash.jpg","sMap":"JharkhandMap.jpg","area":"497","ruling":""},
+            {"sn":"Jammu and Kashmir","cap":"Srinagar","gov":" Shri Manoj Sinha","cm":"Omar Abdullah","sImage":"Omar.jpg","gImg":"Manoj.jpg","sMap":"BiharMap.jpg","area":"120,355","ruling":""},
+            {"sn":"Ladakh","cap":"Leh","gov":" B. D. Mishra","cm":"Sonam Wangmo","sImage":"Sonam.jpg","gImg":"BDMishra.jpg","sMap":"JharkhandMap.jpg","area":"59,146","ruling":""}]
+        function addStateNames()
+        {
+            let s=document.getElementById("state");
+            for(let i=0; i<data.length; i++)
+            {
+                let opt=document.createElement("option");
+                opt.value=i;
+                opt.innerHTML=data[i].sn;
+                s.appendChild(opt);
+            }
+        }
+        function showStateInfo()
+        {
+            let selectedState= parseInt(document.getElementById("state").value);
+            //alert("SelectedState: "+selectedState);
+            document.getElementById("sn").innerHTML=data[selectedState].sn;
+            document.getElementById("capital").innerHTML=data[selectedState].cap;
+            document.getElementById("governor").innerHTML=data[selectedState].gov;
+            document.getElementById("cm").innerHTML=data[selectedState].cm;
+            document.getElementById("sImage").src=data[selectedState].sImage;
+            document.getElementById("gImg").src=data[selectedState].gImg;
+            document.getElementById("sMap").src=data[selectedState].sMap;
+            document.getElementById("area").innerHTML=data[selectedState].area;
+            document.getElementById("rulingParty").innerHTML=data[selectedState].ruling;
+        }
+    </script>
+</head>
+<body onload="addStateNames()">
+    <h1 id="head">Indian State Information</h1>
+    <div class="container, setBorder">
+        <div class="row">
+            <div class="col-sm-4" style="font-family: 'Times New Roman', Times, serif; font-size: 25px;">Select The state you want to know about: </div>
+            <div class="col-sm-4">
+                <select id="state" style="font-size: 25px;" onchange="showStateInfo()">
+
+                </select>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 border2 font1"><label>State name</label></div>
+            <div class="col-sm-2 border2 font1"><label>Capital Name</label></div>
+            <div class="col-sm-2 border2 font1"><label>Governor Name & pic</label></div>
+            <div class="col-sm-2 border2 font1"><label>C.M Name & Pic </label></div>
+            <div class="col-sm-2 border2 font1"><label>Map </label></div>
+            <div class="col-sm-1 border2 font1"><label>Area (Km &sup2;)</label></div>
+            <div class="col-sm-2 border2 font1"><label>Ruling Party</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 font1"><label id="sn"></label></div>
+            <div class="col-sm-2 font1"><label id="capital"></label></div>
+            <div class="col-sm-2 font1">
+                <label id="governor"></label><br/>
+                <img id="gImg" class="picStyle" src=""/>
+            </div>
+            <div class="col-sm-2 font1">
+                <label id="cm"></label><br/>
+                <img id="sImage" class="picStyle" style="margin-top: 15px;" src=""/>
+            </div>
+            <div class="col-sm-2 font1">
+                <img id="sMap" class="picStyle" src=""/>
+            </div>
+            <div class="col-sm-1 font1"><label id="area"></label></div>
+            <div class="col-sm-2 font1"><label id="rulingParty"></label></div>
+        </div>
+    </div>
+</body>
+</html>
